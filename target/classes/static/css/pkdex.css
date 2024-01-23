@@ -1,0 +1,19 @@
+h1 { text-transform: lowercase; }
+
+h1:first-letter {
+  text-transform: uppercase;
+}
+
+.nope {
+    display: none;
+}
+
+.tipos {
+    display: flex;
+    justify-content: space-around;
+}
+
+.info {
+    display: flex;
+    justify-content: space-around;
+}

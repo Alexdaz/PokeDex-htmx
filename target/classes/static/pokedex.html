@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/htmx.min.js"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
+    <script type="module" src="js/pokecomp.js"></script>
+    <script src="js/pokedex.js"></script>
+    <link href="css/tailwind.min.css" rel="stylesheet">
+    <link href="css/pkdex.css" rel="stylesheet">
+    <title>PokéDex</title>
+</head>
+<body class="bg-gray-100">
+    <div class="text-center">
+        <pkm-titu texto="PokéDex"></pkm-titu>
+        <div class="container mx-auto py-8 max-w-lg">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h1 class="text-3xl font-bold mb-4" id="Titulo"></h1>
+
+                <form hx-ext="response-targets">
+                    <div class="tipos">
+                        <img id="type1">
+                        <img id="type2">
+                    </div>
+                    <br>
+                    <div class="info">
+                        <p class="text-2xl font-bold mb-4" id="Nopokedex"></p>
+                        <p class="text-2xl font-bold mb-4" id="Expbase"></p>
+                        <p class="text-2xl font-bold mb-4" id="Altura"></p>
+                        <p class="text-2xl font-bold mb-4" id="Peso"></p>
+                    </div>
+
+                    <img id="pkmn">
+
+                    <div style="color: red;" id="not-found"></div>
+
+                    <input type="text" id="pok" name="nombre"
+                        class="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+                        placeholder="Ingresa el pokémon a buscar" />
+
+                    <br>
+                    <pkm-btn texto="Buscar" hx-get="https://pokeapi.co/api/v2/pokemon/:nombre" hx-target="#pokemon" hx-target-404="#not-found"></pkm-btn>
+                    <pkm-btn id="btnSave" class="nope" texto="Guardar" hx-post="http://localhost:8080/api/pokemons" hx-ext="submitjson" hx-target="#rpost"></pkm-btn>
+
+                    <div id='pokemon' class="nope"></div>
+                    <div id='rpost' class="nope"></div>
+                    <p id="tipo1" class="nope"></p>
+                    <p id="tipo2" class="nope"></p>
+                </form>
+            </div>
+        </div>
+</body>
+</html>
