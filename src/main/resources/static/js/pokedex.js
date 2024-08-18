@@ -15,8 +15,8 @@ window.addEventListener("htmx:configRequest", function (event) {
 
 window.addEventListener('htmx:afterSettle', function (event) {
     if (event.detail.target.id === 'pokemon') {
-        var responseText = event.detail.xhr.responseText;
-        var jsonResponse = JSON.parse(responseText);
+        let responseText = event.detail.xhr.responseText;
+        let jsonResponse = JSON.parse(responseText);
 
         document.getElementById('Nopokedex').innerHTML = 'No. ' + jsonResponse.id;
         document.getElementById('Expbase').innerHTML = 'EXP Base: ' + (jsonResponse?.base_experience ?? 0);
@@ -50,10 +50,10 @@ window.addEventListener('htmx:afterRequest', function (evt) {
 });
 
 window.addEventListener('htmx:beforeRequest', function (evt) {
-  const targetError = evt.target.attributes.getNamedItem('hx-target-error')
-  if (targetError) {
-    document.getElementById('error').style.display = "none";
-  }
+    const targetError = evt.target.attributes.getNamedItem('hx-target-error')
+    if (targetError) {
+      document.getElementById('error').style.display = "none";
+    }
 });
 
 htmx.defineExtension('submitjson', {
@@ -67,7 +67,7 @@ htmx.defineExtension('submitjson', {
     encodeParameters: function (xhr) {
         xhr.overrideMimeType('text/json')
 
-        var jsonPoke = {
+        let jsonPoke = {
             nombre: upperFirstChar(document.getElementById("pok").value),
             tipo1: upperFirstChar(document.getElementById('tipo1').innerHTML),
             tipo2: document.getElementById('tipo2').innerHTML == '-' ? null : upperFirstChar(document.getElementById('tipo2').innerHTML),
